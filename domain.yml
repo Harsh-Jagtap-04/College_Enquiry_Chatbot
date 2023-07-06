@@ -1,0 +1,176 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- user_submitted_password:
+    use_entities: true
+- user_wants_to_check_attendance:
+    use_entities: true
+- user_submitted_usn:
+    use_entities: true
+- user_wants_to_check_upcoming_holidays:
+    use_entities: true
+- user_wants_to_check_marks:
+    use_entities: true
+- give_time:
+    use_entities: true
+- Request_Admission:
+    use_entities: true
+- my_name:
+    use_entities: []
+- mobile_number:
+    use_entities: []
+- Course:
+    use_entities: []
+- user_wants_to_get_college_info:
+    use_entities: true
+- college_location:
+    use_entities: true
+- college_Facility:
+    use_entities: true
+- college_Contact:
+    use_entities: true
+entities:
+- name
+- number
+- course
+slots:
+  name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  number:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  course:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+responses:
+  utter_greet:
+  - buttons:
+    - payload: I want to get some information about College.
+      title: College Information
+    - payload: I would like to know about my attendance
+      title: Attendance
+    - payload: I would like to know about my marks
+      title: Marks
+    text: Hey! How can I help you?. Below are few of the suggestions
+
+  utter_college_info:
+  - buttons:
+    - payload: Where is college located?
+      title: College Address
+    - payload: How can i connect with college?
+      title: Contact
+    - payload: what facilities are provided by college
+      title: Facilities
+    - payload: Which courses are offered by College?
+      title: Courses
+    text: Our goal is to create and develop "Modern" youth as responsible citizens with 
+          multi-dimensional personalities by inculcating among students a blending of cultural awareness, 
+          compassionate and progressive attitude, scientific insights and time-tested traditional values.
+          Do you need more details?
+  utter_Contact:
+  - text: |-
+       college email: collegeid@gmail.com
+       college number: 123456789
+  utter_Facilities:
+  - text: |-
+        -COLLEGE HOSTEL
+        -TRANSPORT FACILITY
+        -COLLEGE CANTEEN
+        -LIBRARY & INFORMATION CENTER
+        -TEACHING STAFF
+        -PRACTICAL LABS
+        -PLAY GROUND
+  utter_Courses:
+  - buttons:
+    - payload: Undergraduate Programs
+      title: UG
+    - payload: Postgraduate Programs
+      title: PG
+    text: What are you looking for? 
+
+  utter_UG_Courses: 
+  - text: |-
+       UG Programs:
+       B.A.   B.Com.
+       B.B.A.(C.A.)
+       B.Sc.
+       B.C.A. (Science)
+
+  utter_PG_Courses: 
+  - text: |-
+       PG Programs:
+       M.A.   
+       M.Com.
+       M.Sc.
+
+  utter_Address:
+  - text: 'Pune, Maharashtra. You can just follow the [map](https://www.google.com/maps/place/Modern+College+of+Arts,+Science+%26+Commerce/@18.5412862,73.8264262,18z/data=!4m5!3m4!1s0x3bc2bf6995555555:0xead9399e14762578!8m2!3d18.5413447!4d73.8273945)'
+  utter_cheer_up:
+  - image: "https://cdn.quotesgram.com/img/50/2/887402667-ece0c09f76233bac87b79353e2342888.jpg"
+    text: Don't be sad
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_ask_usn:
+  - text: Please enter your College Id
+  utter_ask_password:
+  - text: Please enter your password
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Have a good day!
+  utter_ask_more:
+  - text: did you need anything else?
+  - text: what else do you want to ask?
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_name:
+  - text: What is your name?
+  utter_ask_number:
+  - text: What is your mobile number?
+  utter_ask_course:
+  - text: In Which course you want to Enroll?
+  utter_enjoy_holidays:
+  - text: Enjoy your holidays!
+
+  utter_details_thanks:
+  - text: |-
+      Thanks for providing the given details 
+      Name: {name},
+      Mobile Number: {number},
+      Course: {course}
+      We will contact you soon
+      
+actions:
+- validate_credentials_and_display_marks
+- action_ask_password
+- action_ask_usn
+- validate_credentials_and_display_attendance
+- display_upcoming_holidays
+- action_show_time
+forms: {}
+e2e_actions: []

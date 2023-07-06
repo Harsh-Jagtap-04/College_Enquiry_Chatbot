@@ -1,0 +1,153 @@
+version: "2.0"
+
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: College info
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: user_wants_to_get_college_info
+  - action: utter_college_info
+
+- story: College Location
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: college_location
+  - action: utter_Address
+
+- story: College Contact
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: college_Contact
+  - action: utter_Contact
+
+- story: College Facility
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: college_Facility
+  - action: utter_Facilities
+
+- story: Courses
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: college_Courses
+  - action: utter_Courses
+ 
+- story: UG Courses
+  steps:
+  - intent: UG_Courses
+  - action: utter_UG_Courses
+
+- story: PG Courses
+  steps:
+  - intent: PG_Courses
+  - action: utter_PG_Courses
+
+- story: User wants to check marks
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: user_wants_to_check_marks
+  - action: action_ask_usn
+  - intent: user_submitted_usn
+  - action: action_ask_password
+  - intent: user_submitted_password
+  - action: validate_credentials_and_display_marks
+  
+- story: User wants to check attendance
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: user_wants_to_check_attendance
+  - action: action_ask_usn
+  - intent: user_submitted_usn
+  - action: action_ask_password
+  - intent: user_submitted_password
+  - action: validate_credentials_and_display_attendance
+  - action: utter_ask_more
+- story: User wants to check upcoming holidays
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: user_wants_to_check_upcoming_holidays
+  - action: display_upcoming_holidays
+  - action: utter_enjoy_holidays
+- story: path about time
+  steps:
+  - intent: give_time
+  - action: action_show_time
+- story: request admission
+  steps:
+  - intent: Request_Admission
+  - action: utter_ask_name
+  - intent: my_name
+    entities:
+    - name: harsh
+  - slot_was_set:
+    - name: harsh
+  - action: utter_ask_number
+  - intent: mobile_number
+    entities:
+    - number: '9011125630'
+  - slot_was_set:
+    - number: '9011125630'
+  - action: utter_ask_course
+  - intent: Course
+    entities:
+    - course: cs
+  - slot_was_set:
+    - course: cs
+  - action: utter_details_thanks
+- story: Story from Conversation ID 24b2f17f0eee468886629f045c35d36b
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: Request_Admission
+  - action: utter_ask_name
+  - slot_was_set:
+    - name: Harsh
+  - intent: my_name
+    entities:
+    - name: Harsh
+  - action: utter_ask_number
+  - slot_was_set:
+    - number: '9011125630'
+  - intent: mobile_number
+    entities:
+    - number: '9011125630'
+  - action: utter_ask_course
+  - slot_was_set:
+    - course: cs
+  - intent: Course
+    entities:
+    - course: cs
+  - action: utter_details_thanks
+  - action: utter_ask_more
